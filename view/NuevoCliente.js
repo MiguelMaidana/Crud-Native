@@ -2,8 +2,9 @@ import React,{useState} from "react"
 import {View , StyleSheet} from "react-native"
 import {TextInput, Headline,Button,Paragraph,Dialog,Portal} from "react-native-paper"
 import globalStyles from "../styles/global"
+import axios from "axios"
 
-const NuevoCLiente =()=>{
+const NuevoCLiente =({navigation})=>{
 
     // campos Fomularios
    const [nombre,guardarNombre] = useState("")
@@ -14,7 +15,7 @@ const NuevoCLiente =()=>{
 
    //Guardar Cliente en la BD
 
-   const guardarCliente =()=>{
+   const guardarCliente = async()=>{
 
     // validar 
 
@@ -29,10 +30,26 @@ const NuevoCLiente =()=>{
     console.log(cliente)
 
     // guardar el Cliente en la API
+    try{
+       const prueba  =  await axios.post("http://192.168.0.10:19001/clientes",cliente)
+        
+
+    }catch(error){
+        console.log(error)
+    }
+
 
     // redireccionar 
 
+    navigation.navigate("Inicio")
+
+
+
     //limpiar el Form (opcional)
+    guardarNombre("")
+    guardarTelefono("")
+    guardarCorreo("")
+    guardarEmpresa("")
    }
 
 
