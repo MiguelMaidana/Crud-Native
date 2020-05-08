@@ -1,7 +1,7 @@
 {
   "clientes": [
     {
-      "nombre": "Jajj",
+      "nombre": "Miguelito Actualizado ",
       "telefono": "1111",
       "correo": "Jwjajaji",
       "empresa": "Nana nana",
@@ -20,6 +20,20 @@
       "correo": "Monete ",
       "empresa": "Na JJaja",
       "id": "RazKiH8"
+    },
+    {
+      "nombre": "Salame ",
+      "telefono": "181811",
+      "correo": "Makskakw",
+      "empresa": "Mañana",
+      "id": "9y-Bs3J"
+    },
+    {
+      "nombre": "Jessica ",
+      "telefono": "1111",
+      "correo": "Ajjajaja@kakakak",
+      "empresa": "Pelito",
+      "id": "La82Xwe"
     }
   ]
 }

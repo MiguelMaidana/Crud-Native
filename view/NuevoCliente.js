@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React,{useState,useEffect} from "react"
 import {View , StyleSheet} from "react-native"
 import {TextInput, Headline,Button,Paragraph,Dialog,Portal} from "react-native-paper"
 import globalStyles from "../styles/global"
@@ -6,7 +6,8 @@ import axios from "axios"
 
 const NuevoCLiente =({navigation,route})=>{
 
-    //console.log(route.params)
+
+    console.log(route.params)
     const {guardarConsultarApi} = route.params
 
     // campos Fomularios
@@ -15,6 +16,21 @@ const NuevoCLiente =({navigation,route})=>{
    const [correo,guardarCorreo] = useState("")
    const [empresa,guardarEmpresa] = useState("")
    const [alerta,guardarAlerta]= useState(false)
+
+   // detectar si estamos editando o no para manipular el formulario.
+
+   useEffect(()=>{
+    if(route.params.cliente){
+        console.log("estamos editando")
+        const {nombre,telefono,correo,empresa} = route.params.cliente
+        guardarNombre(nombre)
+        guardarTelefono(telefono)
+        guardarCorreo(correo)
+        guardarEmpresa(empresa)
+    }else{
+        console.log("nuevo Cliente")
+    }
+   },[])
 
    //Guardar Cliente en la BD
 
@@ -32,15 +48,33 @@ const NuevoCLiente =({navigation,route})=>{
     const cliente ={nombre,telefono,correo,empresa}
     console.log(cliente)
 
-    // guardar el Cliente en la API
-    try{
-       const prueba  =  await axios.post("http://192.168.0.10:19001/clientes",cliente)
-        
+  // si estamos editando o creando un nuevo cliente
+        if(route.params.cliente){
 
-    }catch(error){
-        console.log(error)
-    }
+            const {id} = route.params.cliente
+            cliente.id = id
+            const url =`http://192.168.0.10:19001/clientes/${id}`
 
+            //console.log(url)
+            try{
+                await axios.put(url,cliente)
+            }catch(eror){
+                console.log(eror)
+            }
+
+
+        }else{
+              // guardar el Cliente en la API
+                 try{
+                     const prueba  =  await axios.post("http://192.168.0.10:19001/clientes",cliente)
+         
+ 
+                 }catch(error)
+                    {
+                    console.log(error)
+                    }
+ 
+            }
 
     // redireccionar 
 
