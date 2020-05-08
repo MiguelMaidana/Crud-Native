@@ -43,10 +43,10 @@ function App() {
               name="Inicio"
               component={Inicio}
               options={({navigation,route})=>({
-                headerLeft:(props)=> <BarraSuperior 
-                                        {...props} 
-                                        navigation={navigation} 
-                                        route={route}/>
+                // headerLeft:(props)=> <BarraSuperior 
+                //                         {...props} 
+                //                         navigation={navigation} 
+                //                         route={route}/>
               })} 
             /> 
             <Stack.Screen 

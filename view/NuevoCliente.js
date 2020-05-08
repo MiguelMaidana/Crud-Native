@@ -4,7 +4,10 @@ import {TextInput, Headline,Button,Paragraph,Dialog,Portal} from "react-native-p
 import globalStyles from "../styles/global"
 import axios from "axios"
 
-const NuevoCLiente =({navigation})=>{
+const NuevoCLiente =({navigation,route})=>{
+
+    //console.log(route.params)
+    const {guardarConsultarApi} = route.params
 
     // campos Fomularios
    const [nombre,guardarNombre] = useState("")
@@ -50,6 +53,10 @@ const NuevoCLiente =({navigation})=>{
     guardarTelefono("")
     guardarCorreo("")
     guardarEmpresa("")
+
+    // cambiar guardarConsultarApi a true para traernos el nuevo cliente 
+
+    guardarConsultarApi(true)
    }
 
 
